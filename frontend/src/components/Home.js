@@ -31,11 +31,7 @@ const Home = () => {
 
  
   const handleChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
-    console.log(formData);
+    setFormData({ ...formData, [e.target.name]: e.target.value }); 
   };
 
   const handleSubmit = async (e) => {
@@ -54,21 +50,28 @@ const Home = () => {
   const addStudent = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/students/add", data);
-      setStudents((prevStudents) => [...prevStudents, response.data]);
+      setStudents([...students, response.data]);
+      
     } catch (error) {
       console.error("Error adding student:", error);
+      alert("Roll number or contact already exists")
     }
   };
 
   
   const deleteStudent = async (id) => {
     try {
+      
       await axios.delete(`http://localhost:5000/students/${id}`);
-      setStudents((prevStudents) => prevStudents.filter((student) => student._id !== id));
+      
+
+      setStudents(students.filter((student) => student._id !== id));
     } catch (error) {
-      console.error("Error deleting student:", error);
+      
+      console.log("Couldn't delete the student:", error);
     }
   };
+  
 
   
   const updateStudent = async (id, data) => {
@@ -97,7 +100,7 @@ const Home = () => {
 
   return (
     <>
-      <Header buttonDisable="true" color="gradient-to-br from-blue-500 to-blue-700" />
+      <Header buttonDisable="true" color="gradient-to-br from-blue-500 to-blue-700" btn="red-500" logoutbotton ="true"/>
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
         <h1 className="text-3xl font-bold mb-6 text-blue-600">Student Management</h1>
 

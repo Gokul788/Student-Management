@@ -14,26 +14,24 @@ router.get("/", async (req, res) => {
 
 
 router.post("/add", async (req, res) => {
-  const { name, age, grade, rollNumber, contact } = req.body;
+  const { name, age, grade, rollNumber, contact } = req.body; 
   try {
-
-    const existingStudent = await Student.findOne({
-      $or: [{ rollNumber }, { contact }],
-    });
-
-    if (existingStudent) {
-      return res
-        .status(400)
-        .json({ message: "Roll number or contact already exists" });
+    
+    const alreadyExists = await Student.findOne({ rollNumber: rollNumber }) || await Student.findOne({ contact: contact });
+    
+    if (alreadyExists) {
+     
+      return res.status(400).json({ message: "Roll number or contact already exists" });
     }
 
-    const newStudent = new Student({ name, age, grade, rollNumber, contact });
-    const savedStudent = await newStudent.save();
-    res.status(201).json(savedStudent);
+    
+    const newStudent = await Student.create({ name, age, grade, rollNumber, contact });
+    res.status(201).json(newStudent); 
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message }); 
   }
 });
+
 
 
 router.put("/:id", async (req, res) => {
