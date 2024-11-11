@@ -38,12 +38,12 @@ router.put("/:id", async (req, res) => {
   const { name, age, grade, rollNumber, contact } = req.body;
 
   try {
-  
-    const existingStudent = await Student.findOne({
-      $or: [{ rollNumber }, { contact }],
-      _id: { $ne: req.params.id },
-    });
-
+    const students = await Student.find();
+    const existingStudent = students.find(
+      (student) =>
+        (student.rollNumber === rollNumber || student.contact === contact) &&
+        student._id != req.params.id
+    );
     if (existingStudent) {
       return res
         .status(400)

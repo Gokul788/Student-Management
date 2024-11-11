@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import login from "../assets/images/login.png"; // Replace with your login image path
+import login from "../assets/images/login.png"; 
 import Footer from "./footer";
 import Header from "./Header";
 import auth from "../config";

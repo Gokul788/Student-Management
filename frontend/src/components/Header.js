@@ -1,14 +1,14 @@
 import React from 'react';
-import { useNavigate ,Link} from 'react-router-dom'; // Keep only one import
+import { useNavigate ,Link} from 'react-router-dom'; 
 import auth from '../config';
 import { signOut } from 'firebase/auth';
 
 export default function Header(props) {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleLogout = () => {
     signOut(auth).then(() => {
-      navigate('/login'); // Navigate to the login page after logout
+      navigate('/login'); 
     }).catch((error) => {
       console.error('Logout Error:', error);
     });

@@ -37,6 +37,7 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (editingStudentId) {
+      
       await updateStudent(editingStudentId, formData); 
     } else {
       await addStudent(formData); 
@@ -74,16 +75,22 @@ const Home = () => {
   
 
   
-  const updateStudent = async (id, data) => {
-    try {
-      const response = await axios.put(`http://localhost:5000/students/${id}`, data);
-      setStudents((prevStudents) =>
-        prevStudents.map((student) => (student._id === id ? response.data : student))
+const updateStudent = async (id, data) => {
+  try {
+   
+    const response = await axios.put(`http://localhost:5000/students/${id}`, data);
+
+    
+    setStudents((students) => {
+      return students.map((student) =>
+        student._id === id ? { ...student, ...response.data } : student
       );
-    } catch (error) {
-      console.error("Error updating student:", error);
-    }
-  };
+    });
+  } catch (error) {
+    console.error("Error updating student:", error);
+  }
+};
+
 
   
   const handleEdit = (student) => {
@@ -94,6 +101,7 @@ const Home = () => {
       rollNumber: student.rollNumber,
       contact: student.contact, 
     });
+    
     setEditingStudentId(student._id);
     setShowModal(true);
   };
@@ -167,8 +175,9 @@ const Home = () => {
                 <div className="mb-4">
                   <label className="block text-gray-700">Contact</label>
                   <input
-                    type="text"
+                    type="tel"
                     name="contact"
+                    pattern="[0-9]{10}"
                     value={formData.contact}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
