@@ -25,18 +25,23 @@ A simple and powerful web application for managing student information. Built us
     cd Student-Management
     ```
 
-2. **Install dependencies for both client and server**:
-    ```bash
-    cd client
-    npm install
+2. **Install dependencies for both frontend and backend**:
 
-    cd ../server
+    **Frontend**:
+    ```bash
+    cd frontend
+    npm install
+    ```
+
+    **Backend**:
+    ```bash
+    cd ../backend
     npm install
     ```
 
 3. **Setup environment variables**:
 
-    Create a `.env` file in the `server` directory and add your MongoDB URI:
+    Create a `.env` file in the `backend` directory and add your MongoDB URI:
     ```
     MONGO_URI=your_mongodb_connection_string
     PORT=5000
@@ -48,13 +53,13 @@ A simple and powerful web application for managing student information. Built us
 
     **Terminal 1**: (Backend)
     ```bash
-    cd server
+    cd backend
     npm start
     ```
 
     **Terminal 2**: (Frontend)
     ```bash
-    cd client
+    cd frontend
     npm start
     ```
 
@@ -65,6 +70,6 @@ A simple and powerful web application for managing student information. Built us
 
 ```plaintext
 Student-Management/
-├── client/           # Frontend code (React)
-├── server/           # Backend code (Express & MongoDB)
+├── frontend/         # Frontend code (React)
+├── backend/          # Backend code (Express & MongoDB)
 └── README.md
