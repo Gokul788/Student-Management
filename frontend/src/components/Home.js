@@ -14,7 +14,10 @@ const Home = () => {
     rollNumber: "",
     contact: "",
   });
-
+  console.log(formData)
+  console.log(students)
+  console.log(editingStudentId)
+  console.log(showModal)
  
   useEffect(() => {
     fetchStudents();
@@ -93,16 +96,18 @@ const updateStudent = async (id, data) => {
 
 
   
-  const handleEdit = (student) => {
+  const handleEdit = (students) => {
+    
     setFormData({
-      name: student.name,
-      age: student.age,
-      grade: student.grade,
-      rollNumber: student.rollNumber,
-      contact: student.contact, 
+      
+      name: students.name,
+      age: students.age,
+      grade: students.grade,
+      rollNumber: students.rollNumber,
+      contact: students.contact, 
     });
     
-    setEditingStudentId(student._id);
+    setEditingStudentId(students._id);
     setShowModal(true);
   };
 
