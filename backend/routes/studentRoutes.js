@@ -1,7 +1,6 @@
-
 const express = require("express");
 const router = express.Router();
-const Student = require("../models/Student");
+const Student = require("../modules/Student");
 
 router.get("/", async (req, res) => {
   try {
@@ -79,4 +78,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = router; 

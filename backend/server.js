@@ -18,5 +18,5 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use("/students",studentRoutes)
 
 app.listen(PORT,() =>{
-    console.log(`Server is runnig on http://localhost:${PORT}`)
-})
+    console.log("Server is runnig on `http://localhost:${PORT}`")
+}) 
