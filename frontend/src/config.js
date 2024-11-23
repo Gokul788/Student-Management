@@ -3,8 +3,13 @@ import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth"
 
 const firebaseConfig = {
+<<<<<<< HEAD
   apiKey:'AIzaSyAtg44-eJOdVqm14yQs1Gt2QM4Yrx6GDEY',
   authDomain:'studentmanegment-b21f6.firebaseapp.com',
+=======
+  apiKey: "",
+  authDomain: "studentmanegment-b21f6.firebaseapp.com",
+>>>>>>> 612669007e0aba912cb42cf8c1261a2e80b518bb
   projectId: "studentmanegment-b21f6",
   storageBucket: "studentmanegment-b21f6.firebasestorage.app",
   messagingSenderId: "823242791565",
